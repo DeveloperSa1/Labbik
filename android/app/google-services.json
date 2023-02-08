@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "490438536636",
+    "project_id": "labbaik-c6ec1",
+    "storage_bucket": "labbaik-c6ec1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490438536636:android:5505d80715161e353bcfb9",
+        "android_client_info": {
+          "package_name": "com.example.labbaik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490438536636-rk3picie6t5d7rl48o7hftfrm6vkf2lj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.labbaik",
+            "certificate_hash": "886f90d3405d8f759e53fbc1b34a2571ecbdff5e"
+          }
+        },
+        {
+          "client_id": "490438536636-ubleof8cf4qc4mrs2sgp71mavprfmp49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK5v7m2kjg0bydtDiVxqdmw-Xy3V7BJQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490438536636-ubleof8cf4qc4mrs2sgp71mavprfmp49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
