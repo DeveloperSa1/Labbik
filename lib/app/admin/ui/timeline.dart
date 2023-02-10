@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:labbaik/app/admin/ui/1dashboard/dashboard.dart';
-import 'package:labbaik/app/admin/ui/2manageTasks/tasks.dart';
 import 'package:labbaik/app/admin/ui/3conversions/conversions.dart';
 import 'package:labbaik/app/admin/ui/4settings/settings.dart';
+import 'package:labbaik/app/staff/ui/2manageTasks/tasks.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/store/bottom_sheet.dart';
 import 'package:labbaik/shared/widget/bottomNAVigation.dart';
-import 'package:labbaik/shared/widget/dashboardADDBUTTON.dart';
+import 'package:labbaik/shared/widget/buttons/dashboardADDBUTTON.dart';
 import 'package:labbaik/shared/widget/raidialBackGround.dart';
 import 'package:sizer/sizer.dart';
 
-class Dashboard extends StatefulWidget {
-  Dashboard({Key? key}) : super(key: key);
+class AdminTimeline extends StatefulWidget {
+  AdminTimeline({Key? key}) : super(key: key);
 
   @override
-  _DashboardState createState() => _DashboardState();
+  _AdminTimelineState createState() => _AdminTimelineState();
 }
 
-class _DashboardState extends State<Dashboard> {
+class _AdminTimelineState extends State<AdminTimeline> {
   ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
 
   StatelessWidget currentScreen = AdminDashboard();
@@ -30,7 +30,7 @@ class _DashboardState extends State<Dashboard> {
 // Screens
     final List<Widget> AdminDashboardScreens = [
       AdminDashboard(),
-      ManageTasks(),
+      Requests(),
       Conversions(),
       Settings(),
     ];
@@ -67,7 +67,8 @@ class _DashboardState extends State<Dashboard> {
                   BottomNavigationItem(
                       itemIndex: 0,
                       notifier: bottomNavigatorTrigger,
-                      icon: Icons.list_alt),
+                      icon: Icons.dashboard_customize
+                      ),
                   Spacer(),
                   BottomNavigationItem(
                       itemIndex: 1,
@@ -96,31 +97,39 @@ class _DashboardState extends State<Dashboard> {
   }
 }
 
-// ignore: must_be_immutable
+                            // #LAST
+// ADMIN HOME = COMPONENTS => OVERVIEW - ALL STUDENT - ALL STAFF .
+// ADMIN REQUESTS = COMPONENTS => REPORTS  - STAFF |REQUEST == TASKS - GUARDIAN-REQUEST |. BY MONTH AND STATUS
+// ADMIN Notifications = COMPONENTS => ANY THINK HAPPEN IN THE APP .
+// ADMIN SETTINGS .
+// ADMIN CHAT LIST .
 
-// SETTINGS ..                #Todo
-// Dashboard = Components => OVERVIEW + ALLSTAFF + ALLSTUDENT ;
+// ATTENDANCE = حاضر - لم يحضر - غائب - إجازة
 
-// ManageTasks = COMPONENTS => Reports + Videos + Images + staff tasks;
+// 
 
-// Notification = COMPONENTS => StaffAttendance - StudentAttendce - Guardian Orders
+// FORMS
+// ADD STUDENT
+// ADD STAFF
+// ADD TASK ..
 
-// SETTING = COMPONENTS => PROFILE - APP .
+// TASK IT COULD BY CHILD OR GENRAL TASK .
 
-// ACTION BUTTON WHICH CONTAINS FORM => TIMELINE CONTAINING => ..
-// ADD STAFF + ADD STUDENT 
 
-// Home = Component => overview + my attenadce
 
-// My tasks Component => Student List + my tasksList
 
-// Notification Component => Videos + images
+// INSIDE VIEW PAGES .
+// ## THESE SHOULD LAST LAST THING EXCEPT CHAT >>
 
-// Setttings 
+// REPORT DETAIL 
+// USER INFO 
+// CHAT SCREEN
 
-// Notifications ..
-
-// Settings
+// WIDGETS ?
+// STATIC WITH CARD NUMPER LAST UPDATE 
+// OPTIONAL STUDENT & STAFF CARD 
+// REQUEST CARD  
+// NOTIFICATION CARD
 
 
                            

@@ -1,7 +1,7 @@
 import 'package:chewie/chewie.dart';
 import 'package:labbaik/imports.dart';
 import 'package:labbaik/shared/constant/texts.dart';
-import 'package:labbaik/shared/widget/appLoading.dart';
+import 'package:labbaik/shared/widget/headers/loaders/appLoading.dart';
 import 'package:sizer/sizer.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:video_player/video_player.dart';

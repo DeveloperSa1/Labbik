@@ -5,10 +5,11 @@ import 'package:labbaik/app/1auth/provider/auth.dart';
 import 'package:labbaik/app/1auth/widgets/background2.dart';
 import 'package:labbaik/app/1auth/widgets/custom_field.dart';
 import 'package:labbaik/app/1auth/widgets/password_field.dart';
+import 'package:labbaik/app/2chat/api/apis.dart';
 import 'package:labbaik/app/admin/ui/timeline.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/constant/texts.dart';
-import 'package:labbaik/shared/widget/appLoading.dart';
+import 'package:labbaik/shared/widget/headers/loaders/appLoading.dart';
 // FlutterJNI.loadLibrary called more than once
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -162,9 +163,9 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
                         .login('admin@admin.com', '123456', widget.role);
                     if (widget.role == UserRole.admin) {
                       print('success');
-                      Get.to(Dashboard());
+                      Get.to(AdminTimeline());
                       // Admin Nav
-
+                      await APIs.getSelfInfo();
                     }
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

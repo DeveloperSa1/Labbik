@@ -1,11 +1,17 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:labbaik/app/1auth/provider/auth.dart';
+import 'package:labbaik/app/2chat/ui/chat_screen.dart';
 import 'package:labbaik/app/guardian/ui/1home/components/photos.dart';
 import 'package:labbaik/app/guardian/ui/1home/components/reports.dart';
 import 'package:labbaik/app/guardian/ui/1home/components/videos.dart';
+import 'package:labbaik/app/guardian/ui/list_chat.dart';
 import 'package:labbaik/imports.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/constant/sized.dart';
+import 'package:labbaik/shared/widget/headers/dashboardNAV.dart';
+import 'package:labbaik/shared/widget/headers/profileWidget.dart';
 import 'package:labbaik/shared/widget/buttons/tabBUTTON.dart';
 
 class GuardianHome extends StatelessWidget {
@@ -28,20 +34,23 @@ class GuardianHome extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //  DashboardNav(
-                    //     icon: FontAwesomeIcons.comment,
-                    //     image: admin!.image!,
-                    //     notificationCount: "2", // Chat Provider
+                    DashboardNav(
+                      icon: FontAwesomeIcons.comment,
+                      image: student!.profileImg!,
+                      notificationCount: "0", // Chat Provider
 
-                    //     page: ChatScreen(),
-                    //     title: "لوحه التحكم",
-                    //     onImageTapped: () {
-                    //       Get.to(() => EditProfileScreen(admin:admin));
-                    //     },
-                    //   ),
+                      page: MyListChat(
+                       
+                      ),
+                      title: "لوحه التحكم",
+                      onImageTapped: () {
+                        // SIGN IN
+                        // Get.to(() => EditProfileScreen(admin:admin));
+                      },
+                    ),
                     sizedH20,
                     Text(
-                        "مرحباَ ${guardian!.name} 👋 \n ولي امر ${student!.name} 💗",
+                        "مرحباَ ${guardian?.name} 👋 \n ولي امر ${student.name} 💗",
                         style: GoogleFonts.lato(
                             color: color1,
                             fontSize: 30,

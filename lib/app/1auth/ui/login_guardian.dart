@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:glass_kit/glass_kit.dart';
+import 'package:labbaik/app/2chat/api/apis.dart';
 import 'package:labbaik/app/1auth/model/guardian.dart';
 import 'package:labbaik/app/1auth/model/student.dart';
 
@@ -12,7 +13,7 @@ import 'package:labbaik/app/1auth/widgets/custom_field.dart';
 import 'package:labbaik/app/guardian/ui/timeline.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/constant/texts.dart';
-import 'package:labbaik/shared/widget/appLoading.dart';
+import 'package:labbaik/shared/widget/headers/loaders/appLoading.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -300,15 +301,20 @@ class _LoginGuardianState extends State<LoginGuardian> {
                       .doc(userID)
                       .get();
 
-                  String UIDFromFirebase = guardianData.get('uid');
+                  String uIDFromFirebase = guardianData.get('uid');
 
-                  if (UIDFromFirebase != userUID) {
+                  if (uIDFromFirebase != userUID) {
+                    await auth.currentUser!.updatePhotoURL(
+                        'https://i.ibb.co/zrh90Gm/children.png');
                     await FirebaseFirestore.instance
                         .collection('guardian')
                         .doc(userID)
                         .update({
                       'uid': userUID,
                     });
+                    String name = await guardianData.get('name');
+
+                    await APIs.createUser('guardian', phone: phone, name: name);
                     await Provider.of<AuthServices>(context, listen: false)
                         .getCurrentUser(UserRole.guardian);
                   } else {
@@ -333,6 +339,18 @@ class _LoginGuardianState extends State<LoginGuardian> {
                       .collection('children')
                       .doc(guardian.myChildren!.first)
                       .get();
+                  String name = fetchStudent.get('name');
+                  await auth.currentUser!.updateDisplayName(name);
+                  var t = await FirebaseFirestore.instance
+                      .collection('users')
+                      .where('phone', isEqualTo: guardian.phone)
+                      .get();
+                  String chatUserId = t.docs.first.id;
+                  await FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(chatUserId)
+                      .update({name: guardianData.get('name')});
+
                   // Student ConvertToModel
                   StudentModel studentData =
                       StudentModel.fromJson(fetchStudent);
@@ -340,6 +358,8 @@ class _LoginGuardianState extends State<LoginGuardian> {
                   Get.offAll(GuardianTimeline());
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
+                  await APIs.getSelfInfo();
+
                   prefs.setString('user_type', 'guardian');
                   prefs.setString('id', guardian.id!);
                 },

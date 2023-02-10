@@ -1,25 +1,29 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:floating_action_bubble/floating_action_bubble.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:labbaik/app/1auth/model/staff.dart';
-
-import 'package:labbaik/imports.dart';
+import 'package:labbaik/app/1auth/ui/welcome.dart';
+import 'package:labbaik/app/2chat/model/chatUser.dart';
+import 'package:labbaik/app/1auth/model/student.dart';
+import 'package:labbaik/app/2chat/ui/chat_screen.dart';
 import 'package:labbaik/shared/constant/colors.dart';
-import 'package:labbaik/shared/widget/headers/loaders/appLoading.dart';
+import 'package:labbaik/shared/constant/sized.dart';
 import 'package:labbaik/shared/widget/headers/loaders/shimmerLoader.dart';
+import 'package:labbaik/shared/widget/raidialBackGround.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class AllStaffs extends StatefulWidget {
-  AllStaffs({super.key});
+class AllChatUsers extends StatefulWidget {
+  AllChatUsers({super.key});
 
   @override
-  State<AllStaffs> createState() => _AllStaffsState();
+  State<AllChatUsers> createState() => _AllChatUsersState();
 }
 
 final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -27,7 +31,7 @@ final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 Animation<double>? _animation;
 AnimationController? _animationController;
 
-class _AllStaffsState extends State<AllStaffs>
+class _AllChatUsersState extends State<AllChatUsers>
     with SingleTickerProviderStateMixin {
   var _isLoading = false;
 
@@ -56,44 +60,68 @@ class _AllStaffsState extends State<AllStaffs>
       });
     });
   }
+  final PageStorageBucket bucket = PageStorageBucket();
+  ValueNotifier<int> bottomNavigatorTrigger = ValueNotifier(0);
 
   //     });
   @override
   Widget build(BuildContext context) {
     bool activeButton = false;
 
-    return StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('staff').snapshots(),
-        builder: ((context, snapshot) {
-          if (!snapshot.hasData) {
-            AppLoading();
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return ShimmerLoader();
-          }
-
-          return Column(
-            // padding: EdgeInsets.symmetric(vertical: 10),
-            // shrinkWrap: true,
-            // physics: NeverScrollableScrollPhysics(),
-            children: [
-              // sizedH40,
-              ...List.generate(
-                  snapshot.data!.docs.length,
-                  (index) => _userTile(
-                      StaffsModel.fromJson(snapshot.data!.docs[index])))
-            ],
-          );
-        }));
+    return Scaffold(
+      body: Stack(children: [
+        RadialBackground(
+          color: white,
+          position: "topLeft",
+        ),
+        ValueListenableBuilder(
+            valueListenable: bottomNavigatorTrigger,
+            builder: (BuildContext context, _, __) {
+              return PageStorage(
+                  child: getUsers(),
+                  bucket: bucket
+                  );
+            })
+      ]),
+    );
   }
 }
 
-Widget _userTile(StaffsModel model) {
+Widget getUsers() {
+return   StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('users').snapshots(),
+      builder: ((context, snapshot) {
+        if (!snapshot.hasData) {
+          ShimmerLoader();
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return ShimmerLoader();
+        }
+
+        return Column(
+          // padding: EdgeInsets.symmetric(vertical: 10),
+          // shrinkWrap: true,
+          // physics: NeverScrollableScrollPhysics(),
+          children: [
+            sizedH40,
+            LogoImage(),
+            ...List.generate(
+                snapshot.data!.docs.length,
+                (index) =>
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: _userTile(ChatUser.fromJson(snapshot.data!.docs[index]))))
+          ],
+        );
+      }));
+}
+
+Widget _userTile(ChatUser model) {
   return InkWell(
     onTap: () {
-      // Get.to(StaffDataView(
-      //   staffData: model,
-      // ));
+      Get.to(ChatScreen(
+        user: model,
+      ));
     },
     child: Container(
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -126,26 +154,26 @@ Widget _userTile(StaffsModel model) {
                   color: randomColor(),
                 ),
                 child: Image.network(
-                  'https://img.icons8.com/color/512/user-group-woman-woman.png',
+                  'https://i.ibb.co/zrh90Gm/children.png',
                   height: 50,
                   width: 50,
                   fit: BoxFit.contain,
                 ),
               ),
             ),
-            title: Text(model.name!,
+            title: Text(model.name,
                 style: GoogleFonts.cairo(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                   fontSize: 12.sp,
                 )),
-            subtitle: Text(model.jobTitle!,
+            subtitle: Text(model.isOnline ? 'متصل' : 'غير متصل',
                 style: GoogleFonts.cairo(
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                   fontSize: 10.sp,
                 )),
-            trailing: Icon(Icons.keyboard_arrow_left, size: 30, color: color1),
+            trailing: Icon(FontAwesomeIcons.comment, size: 30, color: color1),
           ),
         )),
   );

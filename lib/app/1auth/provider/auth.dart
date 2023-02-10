@@ -4,6 +4,7 @@ import 'package:labbaik/app/1auth/model/guardian.dart';
 import 'package:labbaik/app/1auth/model/staff.dart';
 import 'package:labbaik/app/1auth/model/student.dart';
 import 'package:labbaik/app/1auth/ui/welcome.dart';
+import 'package:labbaik/app/2chat/api/apis.dart';
 import 'package:labbaik/imports.dart';
 
 // #TODO - CleanFile
@@ -20,6 +21,8 @@ class AuthServices with ChangeNotifier {
   StudentModel? _student;
   StudentModel? get student => _student;
 
+
+
 // ADMIN LOGIN
   Future<void> login(String email, String password, UserRole userRole) async {
     try {
@@ -27,6 +30,9 @@ class AuthServices with ChangeNotifier {
           email: email.trim(), password: password.trim());
       final user = FirebaseAuth.instance.currentUser!.uid;
       print('$user id');
+
+      await APIs.createUser('admin', phone: 'admin@admin.com', name: 'admin');
+
       await getCurrentUser(userRole);
       SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setString("id", FirebaseAuth.instance.currentUser!.uid);

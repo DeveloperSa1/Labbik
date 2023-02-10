@@ -8,7 +8,7 @@ import 'package:labbaik/app/guardian/ui/4settings/settings.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/store/bottom_sheet.dart';
 import 'package:labbaik/shared/widget/bottomNAVigation.dart';
-import 'package:labbaik/shared/widget/dashboardADDBUTTON.dart';
+import 'package:labbaik/shared/widget/buttons/dashboardADDBUTTON.dart';
 import 'package:labbaik/shared/widget/raidialBackGround.dart';
 import 'package:sizer/sizer.dart';
 
@@ -95,19 +95,46 @@ class _GuardianTimelineState extends State<GuardianTimeline> {
                       icon: FeatherIcons.settings)
                 ])));
   }
-}
 
 // ignore: must_be_immutable
 
-// Home = Components => Reports + Videos + images + 
+// Home = Components => Reports + Videos + images +
 
 // MonthPlan = Compontents => OverView + TimeTable .
 
-// + For Chat 
+// + For Chat
 
 // Notifi | AnnounceMent - leatest Attendance
 
 // SETTING = COMPONENTS => MyPROFILE - MychildProfile
 
+}
+// WHEN STUDENT HAS BEEN ADDED HIS ACCOUNT WILL BE CONTAINING
+
+// ####################################################### 
+
+// INSIDE PAGE VIEW
+
+// REPORTDETAIL REPETED ..
+
+// WIDGETS?
+// REPORTS CARD
+// VIDEOS VIEW
+// IMAGE CARD
+// OPTIONAL - TIMETABLE & GOALS
+// INHEANCE MONTHPLAN OVERVIEW
+// NOTI CARD REPETED
 
 
+// FORM
+// SEND A REQUEST!
+// $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ // ###########################
+// REPORTS WILL NOT BE EXITS ONLY VIDEOS - IMAGES } UNTIL ONE ADDED
+
+// MONTH PLAN WILL HAVE TIMETABLE AND SKILLS .
+
+// NOTI THERE WILL BE INITAIL MESSAGES 
+
+// PROFILE WILL BE READY ..
+
+// CHAT WILL BE ADDED .

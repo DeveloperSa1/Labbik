@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:labbaik/app/1auth/widgets/background.dart';
 import 'package:labbaik/app/1auth/widgets/cards_selection.dart';
+import 'package:labbaik/main.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/constant/sized.dart';
 import 'package:labbaik/shared/constant/texts.dart';
@@ -19,12 +20,14 @@ class WelcomeScreen extends StatefulWidget {
 class _WelcomeScreenState extends State<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
+        mq = MediaQuery.of(context).size;
+
     List<IconMenu> iconList = [
       IconMenu(
-          iconName: Icons.person,
-          titleIcon: "ولي امر",
-          color: color1,
-          ),
+        iconName: Icons.person,
+        titleIcon: "ولي امر",
+        color: color1,
+      ),
       IconMenu(
         iconName: Icons.people,
         titleIcon: "موظفه",
@@ -36,6 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         color: Colors.purple,
       )
     ];
+    
     return WelcomeBackground(
       child: SingleChildScrollView(
         child: SafeArea(
@@ -58,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         child: SelectCard(
                           listContent: iconList,
                         ),
-                      ) ,
+                      ),
                       SocialIcons(),
                     ]),
               ),
@@ -116,7 +120,7 @@ class LogoImage2 extends StatelessWidget {
               "assets/images/Labbaik.png",
             ),
           ),
-          const Spacer(),
+          Text('Made with love in Jeddah '),
         ],
       ),
     );
@@ -129,10 +133,13 @@ class SocialIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        Text('تواصلو معنا'),
-        Icon(Icons.whatsapp,color: green,)
-      ],
+      // children: [
+      //   Text('تواصلو معنا'),
+      //   Icon(
+      //     Icons.whatsapp,
+      //     color: green,
+      //   )
+      // ],
     );
   }
 }

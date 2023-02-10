@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:labbaik/app/admin/ui/1dashboard/dashboard.dart';
-import 'package:labbaik/app/admin/ui/2manageTasks/tasks.dart';
 import 'package:labbaik/app/admin/ui/3conversions/conversions.dart';
 import 'package:labbaik/app/admin/ui/4settings/settings.dart';
 import 'package:labbaik/app/staff/ui/1dashboard/dashboard.dart';
+import 'package:labbaik/app/staff/ui/2manageTasks/tasks.dart';
 import 'package:labbaik/shared/constant/colors.dart';
 import 'package:labbaik/shared/store/bottom_sheet.dart';
 import 'package:labbaik/shared/widget/bottomNAVigation.dart';
-import 'package:labbaik/shared/widget/dashboardADDBUTTON.dart';
+import 'package:labbaik/shared/widget/buttons/dashboardADDBUTTON.dart';
 import 'package:labbaik/shared/widget/raidialBackGround.dart';
 import 'package:sizer/sizer.dart';
 
@@ -31,7 +31,7 @@ class _StaffTimelineState extends State<StaffTimeline> {
 // Screens
     final List<Widget> AdminStaffTimelineScreens = [
       StaffDashboard(),
-      ManageTasks(),
+      Requests(),
       Conversions(),
       Settings(),
     ];
@@ -98,15 +98,18 @@ class _StaffTimelineState extends State<StaffTimeline> {
   }
 }
 
-// ignore: must_be_immutable
 
-// SETTINGS ..
-// StaffTimeline = Components => OVERVIEW + ALLSTAFF + ALLSTUDENT ;
+// My Attendance | MY tasks | N0ti | PROFILE .
 
-// NOTIFICATION = COMPONENTS => ALL + ATTENDACE STAFF + STAFF REPORT;
+// CHAT SCREEN .
 
-// CHAT = COMPONENTS => ALL - Parents - Staff
+// FIRST TWO PAGES WITH STATICS IN FUTURE AND SORT FUNC
 
-// SETTING = COMPONENTS => PROFILE - APP .
+// THAT ATTENDANCE SCREEN WITH LEATEST CHECK TUTORIAL
+
+// MY TASKS SHOULD HAVE COMPLEATE BUTTON OR APPORVAL 
+
+// COPY PASTE THE REST ..
+
 
 

@@ -9,7 +9,7 @@ import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:labbaik/app/1auth/model/student.dart';
 import 'package:labbaik/shared/constant/colors.dart';
-import 'package:labbaik/shared/widget/shimmerLoader.dart';
+import 'package:labbaik/shared/widget/headers/loaders/shimmerLoader.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
